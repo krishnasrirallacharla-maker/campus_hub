@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Explore Events | CampusHub</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet" />
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/events.css" />
+</head>
+<body>
+
+  <!-- Site Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand-logo">
+        <div class="logo-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+        <span>Campus<span>Hub</span></span>
+      </a>
+
+      <nav class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="events.html" class="nav-link active">Events</a>
+        <a href="events.html?cat=Tech" class="nav-link">Hackathons</a>
+        <a href="events.html?cat=Cultural" class="nav-link">Cultural</a>
+      </nav>
+
+      <div class="nav-actions" id="nav-actions-container">
+        <!-- Injected dynamically by main.js -->
+        <a href="login.html" class="btn btn-secondary btn-sm">Log In</a>
+        <a href="register.html" class="btn btn-primary btn-sm btn-desktop-only">Sign Up</a>
+      </div>
+
+      <button type="button" class="mobile-menu-btn" id="mobile-toggle-btn" aria-label="Toggle Navigation">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-nav-drawer" id="mobile-drawer">
+    <div class="drawer-content">
+      <div class="drawer-header">
+        <div class="brand-logo">
+          <div class="logo-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+          <span>Campus<span>Hub</span></span>
+        </div>
+        <button type="button" class="modal-close" id="drawer-close-btn">&times;</button>
+      </div>
+      <div class="drawer-links">
+        <a href="index.html">Home</a>
+        <a href="events.html">Browse Events</a>
+        <a href="student-dashboard.html">Student Dashboard</a>
+        <a href="admin-dashboard.html">Admin Dashboard</a>
+        <a href="login.html">Log In</a>
+        <a href="register.html" class="btn btn-primary" style="color: white; margin-top: 1rem; text-align: center;">Sign Up</a>
+      </div>
+    </div>
+  </div>
+
+  <main class="main-content">
+    <!-- Hero Banner -->
+    <section class="page-hero">
+      <div class="container">
+        <h1>Explore Campus Events</h1>
+        <p>Find hackathons, workshops, music festivals, tournaments, and guest lectures happening across university grounds.</p>
+      </div>
+    </section>
+
+    <!-- Search & Filter Controls -->
+    <section class="container filter-section">
+      <div class="filter-card">
+        <div class="filter-main-row">
+          <div class="filter-search-box">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="catalog-search-input" placeholder="Search by event title, keywords, or venue..." />
+          </div>
+
+          <div class="filter-select-group">
+            <select id="catalog-sort-select" aria-label="Sort Events">
+              <option value="date-asc">Date: Upcoming First</option>
+              <option value="date-desc">Date: Furthest First</option>
+              <option value="popular">Most Popular</option>
+              <option value="price-low">Free / Price: Low to High</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Category Pill Selectors -->
+        <div class="category-pills-bar">
+          <button type="button" class="cat-pill-btn active" data-category="All">All Events</button>
+          <button type="button" class="cat-pill-btn" data-category="Tech">Tech & Hackathons</button>
+          <button type="button" class="cat-pill-btn" data-category="Cultural">Cultural & Arts</button>
+          <button type="button" class="cat-pill-btn" data-category="Workshop">Workshops</button>
+          <button type="button" class="cat-pill-btn" data-category="Sports">Sports</button>
+          <button type="button" class="cat-pill-btn" data-category="Gaming">Esports & Gaming</button>
+          <button type="button" class="cat-pill-btn" data-category="Seminar">Seminars</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Results Section -->
+    <section class="container" style="margin-bottom: 4rem;">
+      <div class="events-results-header">
+        <h3>Available Events</h3>
+        <span class="badge badge-secondary" id="events-count-badge">Loading...</span>
+      </div>
+
+      <!-- Events Grid Container -->
+      <div class="events-grid" id="events-grid-container">
+        <!-- Rendered via js/events.js -->
+      </div>
+    </section>
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="brand-logo">
+            <div class="logo-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+            <span>Campus<span>Hub</span></span>
+          </div>
+          <p>The modern, responsive campus event platform designed for students, faculty coordinators, and club organizers.</p>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-heading">Quick Links</h4>
+          <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="events.html">Browse Events</a>
+            <a href="student-dashboard.html">Student Portal</a>
+            <a href="admin-dashboard.html">Admin Center</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-heading">Categories</h4>
+          <div class="footer-links">
+            <a href="events.html?cat=Tech">Hackathons & AI</a>
+            <a href="events.html?cat=Cultural">Cultural Festivals</a>
+            <a href="events.html?cat=Sports">Sports Tournaments</a>
+            <a href="events.html?cat=Workshop">Hands-on Workshops</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-heading">Campus Desk</h4>
+          <p style="margin-bottom: 0.75rem;"><i class="fa-solid fa-envelope"></i> events@college.edu</p>
+          <p><i class="fa-solid fa-phone"></i> +1 (555) 019-2834</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>&copy; 2026 CampusHub Event Management System. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/mock-data.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/events.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Check for ?cat= query param
+      const urlParams = new URLSearchParams(window.location.search);
+      const categoryParam = urlParams.get('cat');
+      if (categoryParam) {
+        currentFilterCategory = categoryParam;
+      }
+      loadEventsCatalog();
+      if (categoryParam) {
+        document.querySelectorAll('.cat-pill-btn').forEach(btn => {
+          btn.classList.toggle('active', btn.dataset.category.toLowerCase() === categoryParam.toLowerCase());
+        });
+      }
+    });
+  </script>
+</body>
+</html>

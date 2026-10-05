@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CampusHub | College Event Management System</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet" />
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/events.css" />
+</head>
+<body>
+
+  <!-- Site Header / Navbar -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand-logo">
+        <div class="logo-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+        <span>Campus<span>Hub</span></span>
+      </a>
+
+      <nav class="nav-links">
+        <a href="index.html" class="nav-link active">Home</a>
+        <a href="events.html" class="nav-link">Events</a>
+        <a href="events.html?cat=Tech" class="nav-link">Hackathons</a>
+        <a href="events.html?cat=Cultural" class="nav-link">Cultural</a>
+      </nav>
+
+      <div class="nav-actions" id="nav-actions-container">
+        <!-- Injected dynamically by main.js based on auth state -->
+        <a href="login.html" class="btn btn-secondary btn-sm">Log In</a>
+        <a href="register.html" class="btn btn-primary btn-sm btn-desktop-only">Sign Up</a>
+      </div>
+
+      <button type="button" class="mobile-menu-btn" id="mobile-toggle-btn" aria-label="Toggle Navigation">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-nav-drawer" id="mobile-drawer">
+    <div class="drawer-content">
+      <div class="drawer-header">
+        <div class="brand-logo">
+          <div class="logo-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+          <span>Campus<span>Hub</span></span>
+        </div>
+        <button type="button" class="modal-close" id="drawer-close-btn">&times;</button>
+      </div>
+      <div class="drawer-links">
+        <a href="index.html">Home</a>
+        <a href="events.html">Browse Events</a>
+        <a href="student-dashboard.html">Student Dashboard</a>
+        <a href="admin-dashboard.html">Admin Dashboard</a>
+        <a href="login.html">Log In</a>
+        <a href="register.html" class="btn btn-primary" style="color: white; margin-top: 1rem; text-align: center;">Sign Up</a>
+      </div>
+    </div>
+  </div>
+
+  <main class="main-content">
+    <!-- Hero Section -->
+    <section class="section" style="background: radial-gradient(circle at 80% 20%, rgba(147, 51, 234, 0.15) 0%, rgba(79, 70, 229, 0.05) 50%, transparent 100%), var(--bg-body); padding-top: 3.5rem;">
+      <div class="container">
+        <div style="display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 3.5rem; align-items: center;">
+          <div>
+            <div style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.35rem 0.85rem; background-color: var(--primary-50); border: 1px solid var(--primary-200); border-radius: var(--radius-full); color: var(--primary-700); font-weight: 600; font-size: 0.85rem; margin-bottom: 1.25rem;">
+              <i class="fa-solid fa-sparkles" style="color: var(--accent-600);"></i> College Event Platform 2026
+            </div>
+            <h1 style="margin-bottom: 1.25rem;">
+              Discover, Attend & Manage <span class="text-gradient">Campus Life</span> In One Place.
+            </h1>
+            <p style="font-size: 1.15rem; color: var(--slate-600); margin-bottom: 2rem; line-height: 1.6;">
+              Experience the pulse of university life. Register for hackathons, cultural festivals, sports tournaments, and tech workshops with instant digital passes.
+            </p>
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+              <a href="events.html" class="btn btn-primary btn-lg">
+                <i class="fa-solid fa-compass"></i> Explore All Events
+              </a>
+              <a href="register.html" class="btn btn-secondary btn-lg">
+                Get Started Free
+              </a>
+            </div>
+
+            <!-- Quick Metrics Highlight -->
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--slate-200);">
+              <div>
+                <div style="font-size: 1.75rem; font-weight: 800; color: var(--primary-600);">50+</div>
+                <div style="font-size: 0.85rem; color: var(--slate-500); font-weight: 500;">Annual Events</div>
+              </div>
+              <div>
+                <div style="font-size: 1.75rem; font-weight: 800; color: var(--accent-600);">10K+</div>
+                <div style="font-size: 0.85rem; color: var(--slate-500); font-weight: 500;">Active Students</div>
+              </div>
+              <div>
+                <div style="font-size: 1.75rem; font-weight: 800; color: var(--slate-900);">100%</div>
+                <div style="font-size: 0.85rem; color: var(--slate-500); font-weight: 500;">Digital Tickets</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hero Floating Visual Cards -->
+          <div style="position: relative;">
+            <div style="position: absolute; inset: 0; background: var(--gradient-primary); filter: blur(40px); opacity: 0.2; border-radius: var(--radius-xl);"></div>
+            <div class="card" style="position: relative; z-index: 1; border: 1px solid rgba(255,255,255,0.8); box-shadow: var(--shadow-xl);">
+              <div style="height: 240px; overflow: hidden; position: relative;">
+                <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80" alt="Hackathon" style="width: 100%; height: 100%; object-fit: cover;" />
+                <span class="badge badge-tech" style="position: absolute; top: 1rem; left: 1rem;">Featured Event</span>
+              </div>
+              <div class="card-body">
+                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.5rem;">
+                  <span style="font-size: 0.85rem; font-weight: 600; color: var(--primary-600);"><i class="fa-regular fa-calendar"></i> Oct 15, 2026</span>
+                  <span class="badge badge-success">Free Entry</span>
+                </div>
+                <h3 style="font-size: 1.25rem; margin-bottom: 0.5rem;">HackSphere 2026: 36-Hour National Hackathon</h3>
+                <p style="font-size: 0.9rem; margin-bottom: 1.25rem;">Compete with 500+ builders for $10,000 in grand prizes and sponsor bounties.</p>
+                <a href="event-details.html?id=evt_01" class="btn btn-primary btn-block">View Event Details & Pass</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Categories Grid -->
+    <section class="section section-alt">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag"><i class="fa-solid fa-shapes"></i> Categories</span>
+          <h2>Explore By Event Type</h2>
+          <p>Whatever your passion—coding, arts, gaming, or athletic tournaments—CampusHub has you covered.</p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1.25rem;">
+          <a href="events.html?cat=Tech" class="card card-hover" style="padding: 1.5rem; text-align: center; text-decoration: none;">
+            <div style="width: 50px; height: 50px; border-radius: var(--radius-md); background: #EEF2FF; color: #4F46E5; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin: 0 auto 1rem;">
+              <i class="fa-solid fa-laptop-code"></i>
+            </div>
+            <h4 style="font-size: 1.1rem; color: var(--slate-900); margin-bottom: 0.25rem;">Tech & Hackathons</h4>
+            <p style="font-size: 0.8rem; color: var(--slate-500);">Coding & Robotics</p>
+          </a>
+
+          <a href="events.html?cat=Cultural" class="card card-hover" style="padding: 1.5rem; text-align: center; text-decoration: none;">
+            <div style="width: 50px; height: 50px; border-radius: var(--radius-md); background: #FAF5FF; color: #9333EA; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin: 0 auto 1rem;">
+              <i class="fa-solid fa-masks-theater"></i>
+            </div>
+            <h4 style="font-size: 1.1rem; color: var(--slate-900); margin-bottom: 0.25rem;">Cultural Fests</h4>
+            <p style="font-size: 0.8rem; color: var(--slate-500);">Music, Dance & Drama</p>
+          </a>
+
+          <a href="events.html?cat=Workshop" class="card card-hover" style="padding: 1.5rem; text-align: center; text-decoration: none;">
+            <div style="width: 50px; height: 50px; border-radius: var(--radius-md); background: #FFFBEB; color: #D97706; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin: 0 auto 1rem;">
+              <i class="fa-solid fa-chalkboard-user"></i>
+            </div>
+            <h4 style="font-size: 1.1rem; color: var(--slate-900); margin-bottom: 0.25rem;">Workshops</h4>
+            <p style="font-size: 0.8rem; color: var(--slate-500);">Skill Bootcamps</p>
+          </a>
+
+          <a href="events.html?cat=Sports" class="card card-hover" style="padding: 1.5rem; text-align: center; text-decoration: none;">
+            <div style="width: 50px; height: 50px; border-radius: var(--radius-md); background: #ECFDF5; color: #059669; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin: 0 auto 1rem;">
+              <i class="fa-solid fa-basketball"></i>
+            </div>
+            <h4 style="font-size: 1.1rem; color: var(--slate-900); margin-bottom: 0.25rem;">Sports</h4>
+            <p style="font-size: 0.8rem; color: var(--slate-500);">Tournaments & Leagues</p>
+          </a>
+
+          <a href="events.html?cat=Gaming" class="card card-hover" style="padding: 1.5rem; text-align: center; text-decoration: none;">
+            <div style="width: 50px; height: 50px; border-radius: var(--radius-md); background: #FDF2F8; color: #DB2777; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin: 0 auto 1rem;">
+              <i class="fa-solid fa-gamepad"></i>
+            </div>
+            <h4 style="font-size: 1.1rem; color: var(--slate-900); margin-bottom: 0.25rem;">Esports</h4>
+            <p style="font-size: 0.8rem; color: var(--slate-500);">Gaming Tournaments</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Upcoming Featured Events -->
+    <section class="section">
+      <div class="container">
+        <div style="display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 2.5rem; flex-wrap: wrap; gap: 1rem;">
+          <div>
+            <span class="section-tag" style="margin-bottom: 0.5rem; display: inline-block; padding: 0.35rem 0.85rem; background: var(--primary-50); color: var(--primary-600); border-radius: var(--radius-full); font-weight: 600; font-size: 0.8rem;">
+              <i class="fa-regular fa-calendar-check"></i> What's Happening
+            </span>
+            <h2>Upcoming Campus Events</h2>
+          </div>
+          <a href="events.html" class="btn btn-outline">
+            View All Events <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+
+        <div class="events-grid" id="events-grid-container">
+          <!-- Loaded via events.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Why Choose CampusHub Features -->
+    <section class="section section-alt">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag"><i class="fa-solid fa-wand-magic-sparkles"></i> Platform Highlights</span>
+          <h2>Everything You Need For Campus Activities</h2>
+          <p>Engineered for both enthusiastic students and faculty organizers.</p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+          <div class="card" style="padding: 2rem;">
+            <div style="width: 48px; height: 48px; border-radius: var(--radius-md); background: var(--gradient-primary); color: white; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: 1.25rem;">
+              <i class="fa-solid fa-bolt"></i>
+            </div>
+            <h3 style="font-size: 1.25rem; margin-bottom: 0.75rem;">1-Click Registration</h3>
+            <p style="font-size: 0.925rem; color: var(--slate-600);">
+              Register in seconds with automatic seat allotment, real-time quota counts, and instant pass generation.
+            </p>
+          </div>
+
+          <div class="card" style="padding: 2rem;">
+            <div style="width: 48px; height: 48px; border-radius: var(--radius-md); background: var(--gradient-accent); color: white; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: 1.25rem;">
+              <i class="fa-solid fa-qrcode"></i>
+            </div>
+            <h3 style="font-size: 1.25rem; margin-bottom: 0.75rem;">Digital QR Badges</h3>
+            <p style="font-size: 0.925rem; color: var(--slate-600);">
+              Every registration comes with a unique digital ticket pass ready for instant check-in verification at the venue gates.
+            </p>
+          </div>
+
+          <div class="card" style="padding: 2rem;">
+            <div style="width: 48px; height: 48px; border-radius: var(--radius-md); background: linear-gradient(135deg, #10B981, #059669); color: white; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: 1.25rem;">
+              <i class="fa-solid fa-chart-line"></i>
+            </div>
+            <h3 style="font-size: 1.25rem; margin-bottom: 0.75rem;">Admin Analytics & Control</h3>
+            <p style="font-size: 0.925rem; color: var(--slate-600);">
+              Organizers get real-time dashboards, attendee management, CSV export, and attendance tracking tools.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Call to Action Banner -->
+    <section class="section" style="background: var(--gradient-hero); color: white; position: relative; overflow: hidden;">
+      <div class="container" style="text-align: center; position: relative; z-index: 2;">
+        <h2 style="color: white; font-size: clamp(2rem, 3.5vw, 2.75rem); margin-bottom: 1rem;">
+          Ready to Host or Attend Your Next Event?
+        </h2>
+        <p style="color: var(--primary-100); max-width: 600px; margin: 0 auto 2rem; font-size: 1.1rem;">
+          Join thousands of students and faculty members across the campus today.
+        </p>
+        <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+          <a href="register.html" class="btn btn-secondary btn-lg" style="background: white; color: var(--primary-900);">
+            Sign Up Now
+          </a>
+          <a href="login.html" class="btn btn-outline-white btn-lg">
+            Demo Logins
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="brand-logo">
+            <div class="logo-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+            <span>Campus<span>Hub</span></span>
+          </div>
+          <p>
+            The modern, responsive campus event platform designed for students, faculty coordinators, and club organizers.
+          </p>
+          <div class="footer-socials">
+            <a href="#" class="social-link" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="#" class="social-link" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" class="social-link" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+            <a href="#" class="social-link" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="footer-heading">Quick Links</h4>
+          <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="events.html">Browse Events</a>
+            <a href="student-dashboard.html">Student Portal</a>
+            <a href="admin-dashboard.html">Admin Center</a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="footer-heading">Categories</h4>
+          <div class="footer-links">
+            <a href="events.html?cat=Tech">Hackathons & AI</a>
+            <a href="events.html?cat=Cultural">Cultural Festivals</a>
+            <a href="events.html?cat=Sports">Sports Tournaments</a>
+            <a href="events.html?cat=Workshop">Hands-on Workshops</a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="footer-heading">Campus Desk</h4>
+          <p style="margin-bottom: 0.75rem;">Student Activity Center, North Wing 204</p>
+          <p style="margin-bottom: 0.75rem;"><i class="fa-solid fa-envelope"></i> events@college.edu</p>
+          <p><i class="fa-solid fa-phone"></i> +1 (555) 019-2834</p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 CampusHub Event Management System. All rights reserved.</div>
+        <div style="display: flex; gap: 1.5rem;">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Student Code of Conduct</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/mock-data.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/events.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      loadEventsCatalog({ limit: 3 });
+    });
+  </script>
+</body>
+</html>
