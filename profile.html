@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>User Profile | CampusHub</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet" />
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/dashboard.css" />
+</head>
+<body>
+
+  <!-- Site Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand-logo">
+        <div class="logo-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+        <span>Campus<span>Hub</span></span>
+      </a>
+
+      <nav class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="events.html" class="nav-link">Events</a>
+        <a href="#" id="nav-dashboard-link" class="nav-link">Dashboard</a>
+      </nav>
+
+      <div class="nav-actions" id="nav-actions-container">
+        <!-- Injected dynamically by main.js -->
+      </div>
+    </div>
+  </header>
+
+  <!-- Dashboard Layout -->
+  <div class="dashboard-layout">
+    <!-- Sidebar -->
+    <aside class="dashboard-sidebar">
+      <div class="sidebar-user-card">
+        <div class="sidebar-user-avatar" id="sidebar-avatar-initials">U</div>
+        <div class="sidebar-user-details">
+          <div class="sidebar-user-name" id="sidebar-user-name">User Name</div>
+          <div class="sidebar-user-role" id="sidebar-user-role">Member</div>
+        </div>
+      </div>
+
+      <ul class="sidebar-nav-list" id="sidebar-nav-container">
+        <!-- Dynamic Links -->
+      </ul>
+
+      <div class="sidebar-footer">
+        <button type="button" class="sidebar-nav-item" onclick="auth.logout()" style="width: 100%; color: var(--danger-500);">
+          <i class="fa-solid fa-arrow-right-from-bracket" style="color: var(--danger-500);"></i> Sign Out
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="dashboard-main">
+      <div class="dashboard-topbar">
+        <div class="dashboard-title-box">
+          <h1>Profile Settings</h1>
+          <p>Manage your campus identity, academic department details, and contact preferences.</p>
+        </div>
+      </div>
+
+      <div class="profile-grid">
+        <!-- Profile Avatar Card -->
+        <div class="card profile-avatar-card">
+          <div class="profile-avatar-large" id="profile-avatar-initials">A</div>
+          <h3 id="profile-card-name" style="font-size: 1.2rem; margin-bottom: 0.25rem;">Alex Johnson</h3>
+          <p id="profile-card-role" style="font-size: 0.85rem; color: var(--primary-600); font-weight: 600; margin-bottom: 1.25rem;">STUDENT • CS</p>
+
+          <div style="background-color: var(--slate-50); padding: 1rem; border-radius: var(--radius-md); text-align: left; font-size: 0.825rem; color: var(--slate-600);">
+            <div style="display: flex; gap: 0.5rem; margin-bottom: 0.5rem;">
+              <i class="fa-solid fa-shield-check" style="color: var(--success-600); margin-top: 3px;"></i>
+              <span>Verified CampusHub Account</span>
+            </div>
+            <div style="display: flex; gap: 0.5rem;">
+              <i class="fa-solid fa-database" style="color: var(--primary-600); margin-top: 3px;"></i>
+              <span>Local Storage Mock Mode</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Profile Form Card -->
+        <div class="card" style="padding: 2rem;">
+          <h3 style="font-size: 1.25rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem;">
+            <i class="fa-regular fa-id-card" style="color: var(--primary-600);"></i> Personal & Academic Details
+          </h3>
+
+          <form id="user-profile-form">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+              <div class="form-group">
+                <label class="form-label" for="prof-name-input">Full Name</label>
+                <input type="text" id="prof-name-input" class="form-input" required />
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="prof-email-input">Email Address (Read-only)</label>
+                <input type="email" id="prof-email-input" class="form-input" readonly style="background-color: var(--slate-100); color: var(--slate-500); cursor: not-allowed;" />
+              </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+              <div class="form-group">
+                <label class="form-label" for="prof-dept-input">Academic Department / Council</label>
+                <input type="text" id="prof-dept-input" class="form-input" />
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="prof-rollno-input">Roll No / Faculty ID</label>
+                <input type="text" id="prof-rollno-input" class="form-input" />
+              </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+              <div class="form-group">
+                <label class="form-label" for="prof-semester-input">Semester / Title</label>
+                <input type="text" id="prof-semester-input" class="form-input" placeholder="e.g. 6th Semester" />
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="prof-phone-input">Phone Number</label>
+                <input type="tel" id="prof-phone-input" class="form-input" placeholder="+1 (555) 000-0000" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="prof-bio-input">Short Bio</label>
+              <textarea id="prof-bio-input" class="form-textarea" placeholder="Tell other students about your interests, clubs, and skills..."></textarea>
+            </div>
+
+            <div style="display: flex; justify-content: flex-end; gap: 1rem; margin-top: 1.5rem;">
+              <button type="submit" class="btn btn-primary">
+                <i class="fa-solid fa-floppy-disk"></i> Save Profile Changes
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/mock-data.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/profile.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      initProfilePage();
+      const user = auth.getCurrentUser();
+      if (user) {
+        const isAdmin = user.role === 'admin';
+        document.getElementById('sidebar-avatar-initials').textContent = user.name.charAt(0).toUpperCase();
+        document.getElementById('sidebar-user-name').textContent = user.name;
+        document.getElementById('sidebar-user-role').textContent = user.role;
+
+        // Setup dynamic nav links
+        const navContainer = document.getElementById('sidebar-nav-container');
+        const dashLink = document.getElementById('nav-dashboard-link');
+        if (dashLink) dashLink.href = isAdmin ? 'admin-dashboard.html' : 'student-dashboard.html';
+
+        if (isAdmin) {
+          navContainer.innerHTML = `
+            <li><a href="admin-dashboard.html" class="sidebar-nav-item"><i class="fa-solid fa-chart-pie"></i> Overview</a></li>
+            <li><a href="admin-events.html" class="sidebar-nav-item"><i class="fa-solid fa-calendar-plus"></i> Manage Events</a></li>
+            <li><a href="admin-registrations.html" class="sidebar-nav-item"><i class="fa-solid fa-users"></i> Registrations</a></li>
+            <li><a href="profile.html" class="sidebar-nav-item active"><i class="fa-solid fa-user-gear"></i> Profile & Settings</a></li>
+          `;
+        } else {
+          navContainer.innerHTML = `
+            <li><a href="student-dashboard.html" class="sidebar-nav-item"><i class="fa-solid fa-chart-pie"></i> Overview</a></li>
+            <li><a href="my-events.html" class="sidebar-nav-item"><i class="fa-solid fa-ticket"></i> My Events</a></li>
+            <li><a href="events.html" class="sidebar-nav-item"><i class="fa-solid fa-compass"></i> Discover Events</a></li>
+            <li><a href="profile.html" class="sidebar-nav-item active"><i class="fa-solid fa-user-gear"></i> Profile & Settings</a></li>
+          `;
+        }
+      }
+    });
+  </script>
+</body>
+</html>

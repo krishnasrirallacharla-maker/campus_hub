@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Dashboard | CampusHub</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet" />
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/dashboard.css" />
+</head>
+<body>
+
+  <!-- Site Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand-logo">
+        <div class="logo-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+        <span>Campus<span>Hub</span></span>
+      </a>
+
+      <nav class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="events.html" class="nav-link">Events</a>
+        <a href="student-dashboard.html" class="nav-link active">My Portal</a>
+      </nav>
+
+      <div class="nav-actions" id="nav-actions-container">
+        <!-- Injected dynamically by main.js -->
+      </div>
+    </div>
+  </header>
+
+  <!-- Dashboard Layout -->
+  <div class="dashboard-layout">
+    <!-- Sidebar -->
+    <aside class="dashboard-sidebar">
+      <div class="sidebar-user-card">
+        <div class="sidebar-user-avatar" id="sidebar-avatar-initials">A</div>
+        <div class="sidebar-user-details">
+          <div class="sidebar-user-name" id="sidebar-user-name">Alex Johnson</div>
+          <div class="sidebar-user-role">Student</div>
+        </div>
+      </div>
+
+      <ul class="sidebar-nav-list">
+        <li>
+          <a href="student-dashboard.html" class="sidebar-nav-item active">
+            <i class="fa-solid fa-chart-pie"></i> Dashboard Overview
+          </a>
+        </li>
+        <li>
+          <a href="my-events.html" class="sidebar-nav-item">
+            <i class="fa-solid fa-ticket"></i> My Registered Events
+          </a>
+        </li>
+        <li>
+          <a href="events.html" class="sidebar-nav-item">
+            <i class="fa-solid fa-compass"></i> Discover Events
+          </a>
+        </li>
+        <li>
+          <a href="profile.html" class="sidebar-nav-item">
+            <i class="fa-solid fa-user-gear"></i> Profile & Settings
+          </a>
+        </li>
+      </ul>
+
+      <div class="sidebar-footer">
+        <button type="button" class="sidebar-nav-item" onclick="auth.logout()" style="width: 100%; color: var(--danger-500);">
+          <i class="fa-solid fa-arrow-right-from-bracket" style="color: var(--danger-500);"></i> Sign Out
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="dashboard-main">
+      <div class="dashboard-topbar">
+        <div class="dashboard-title-box">
+          <h1>Welcome back, <span id="student-greeting-name" class="text-gradient">Alex</span>!</h1>
+          <p id="student-dept-tag">Computer Science & Engineering • CS2024-089</p>
+        </div>
+        <div class="dashboard-actions">
+          <a href="events.html" class="btn btn-primary btn-sm">
+            <i class="fa-solid fa-plus"></i> Register for New Event
+          </a>
+        </div>
+      </div>
+
+      <!-- Quick Metrics -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-info">
+            <span class="stat-label">Registered Events</span>
+            <span class="stat-value" id="stat-total-registered">0</span>
+            <span class="stat-trend positive"><i class="fa-solid fa-circle-check"></i> Confirmed Passes</span>
+          </div>
+          <div class="stat-icon-wrapper stat-icon-indigo">
+            <i class="fa-solid fa-ticket"></i>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-info">
+            <span class="stat-label">Upcoming This Month</span>
+            <span class="stat-value" id="stat-upcoming-count">0</span>
+            <span class="stat-trend neutral"><i class="fa-regular fa-calendar"></i> On Schedule</span>
+          </div>
+          <div class="stat-icon-wrapper stat-icon-purple">
+            <i class="fa-solid fa-calendar-check"></i>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-info">
+            <span class="stat-label">Events Attended</span>
+            <span class="stat-value" id="stat-attended-count">0</span>
+            <span class="stat-trend positive"><i class="fa-solid fa-award"></i> Verified Check-in</span>
+          </div>
+          <div class="stat-icon-wrapper stat-icon-green">
+            <i class="fa-solid fa-certificate"></i>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recent Registered Events Section -->
+      <div class="dashboard-panel">
+        <div class="panel-header">
+          <h3><i class="fa-solid fa-ticket-simple" style="color: var(--primary-600); margin-right: 6px;"></i> My Registered Events</h3>
+          <a href="my-events.html" class="btn btn-outline btn-sm">View All Passes</a>
+        </div>
+
+        <div class="panel-body" style="padding: 0;">
+          <div class="table-responsive">
+            <table class="custom-table">
+              <thead>
+                <tr>
+                  <th>Event Details</th>
+                  <th>Ticket Pass</th>
+                  <th>Venue</th>
+                  <th>Status</th>
+                  <th style="text-align: right;">Action</th>
+                </tr>
+              </thead>
+              <tbody id="student-recent-events-tbody">
+                <!-- Injected via student-dashboard.js -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Pass Modal -->
+  <div class="modal-backdrop" id="ticket-pass-modal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-ticket" style="color: var(--primary-600);"></i> Event Pass & QR Code</h3>
+        <button type="button" class="modal-close" data-modal-close>&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="pass-ticket-modal-content">
+          <h4 id="pass-event-title" style="font-size: 1.25rem; color: var(--slate-900); margin-bottom: 0.25rem;">Event Title</h4>
+          <p id="pass-student-name" style="font-weight: 600; color: var(--primary-600); font-size: 0.95rem;">Student Name</p>
+
+          <div class="qr-code-box">
+            <svg class="qr-svg" viewBox="0 0 100 100" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path d="M0 0h35v35H0V0zm5 5v25h25V5H5zm5 5h15v15H10V10zM65 0h35v35H65V0zm5 5v25h25V5H70zm5 5h15v15H75V10zM0 65h35v35H0V65zm5 5v25h25V70H5zm5 5h15v15H10V75zM45 10h10v10H45V10zm0 25h10v10H45V35zm0 25h10v10H45V60zm0 25h10v15H45V85zm20-20h10v10H65V65zm20 0h15v10H85V65zm-20 20h10v15H65V85zm20 0h15v15H85V85z" fill="#1E293B"/>
+            </svg>
+            <span style="font-size: 0.75rem; color: var(--slate-500); margin-top: 0.5rem; font-weight: 600;">SCAN FOR ENTRY</span>
+          </div>
+
+          <div style="background: var(--slate-50); padding: 1rem; border-radius: var(--radius-md); border: 1px solid var(--slate-200); text-align: left; font-size: 0.85rem;">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 0.4rem;">
+              <span style="color: var(--slate-500);">Ticket ID:</span>
+              <strong id="pass-ticket-code">CH-0000</strong>
+            </div>
+            <div style="display: flex; justify-content: space-between; margin-bottom: 0.4rem;">
+              <span style="color: var(--slate-500);">Date:</span>
+              <strong id="pass-date-time">Oct 15, 2026</strong>
+            </div>
+            <div style="display: flex; justify-content: space-between; margin-bottom: 0.4rem;">
+              <span style="color: var(--slate-500);">Venue:</span>
+              <strong id="pass-venue">Main Campus Auditorium</strong>
+            </div>
+            <div style="display: flex; justify-content: space-between;">
+              <span style="color: var(--slate-500);">Status:</span>
+              <span class="badge badge-success" id="pass-status-badge">Confirmed</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-sm" onclick="window.print()">
+          <i class="fa-solid fa-print"></i> Print Pass
+        </button>
+        <button type="button" class="btn btn-primary btn-sm" data-modal-close>Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/mock-data.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/student-dashboard.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      initStudentDashboard();
+      const user = auth.getCurrentUser();
+      if (user) {
+        document.getElementById('sidebar-avatar-initials').textContent = user.name.charAt(0).toUpperCase();
+        document.getElementById('sidebar-user-name').textContent = user.name;
+      }
+    });
+  </script>
+</body>
+</html>

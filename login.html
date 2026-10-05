@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Log In | CampusHub</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet" />
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/auth.css" />
+</head>
+<body>
+
+  <!-- Minimal Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand-logo">
+        <div class="logo-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+        <span>Campus<span>Hub</span></span>
+      </a>
+      <div>
+        <a href="index.html" class="btn btn-secondary btn-sm"><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="auth-wrapper">
+    <div class="auth-card">
+      <div class="auth-header">
+        <div class="auth-icon"><i class="fa-solid fa-lock"></i></div>
+        <h1>Welcome Back</h1>
+        <p>Sign in to manage registrations and view your event passes.</p>
+      </div>
+
+      <!-- Quick Demo Access Box -->
+      <div class="demo-accounts-box">
+        <div class="demo-title"><i class="fa-solid fa-bolt"></i> Quick Demo Logins</div>
+        <div class="demo-buttons-group">
+          <button type="button" class="demo-btn" id="demo-student-btn">
+            <i class="fa-solid fa-user-graduate"></i> Demo Student
+          </button>
+          <button type="button" class="demo-btn" id="demo-admin-btn">
+            <i class="fa-solid fa-user-shield"></i> Demo Admin
+          </button>
+        </div>
+      </div>
+
+      <form id="login-form">
+        <div class="form-group">
+          <label class="form-label" for="login-email">Campus Email Address</label>
+          <div class="input-icon-wrapper">
+            <i class="fa-regular fa-envelope"></i>
+            <input type="email" id="login-email" class="form-input" placeholder="student@college.edu" required />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="login-password">Password</label>
+          <div class="input-icon-wrapper">
+            <i class="fa-solid fa-key"></i>
+            <input type="password" id="login-password" class="form-input" placeholder="••••••••" required />
+          </div>
+        </div>
+
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem; font-size: 0.85rem;">
+          <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; color: var(--slate-600);">
+            <input type="checkbox" checked /> Remember me
+          </label>
+          <a href="#" onclick="alert('For demo accounts, use password123 (student) or admin123 (admin).')" style="color: var(--primary-600); font-weight: 500;">Forgot password?</a>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block btn-lg" id="login-submit-btn">
+          Sign In to CampusHub
+        </button>
+      </form>
+
+      <div class="auth-footer">
+        Don't have an account? <a href="register.html">Sign up as Student or Admin</a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Scripts -->
+  <script src="js/mock-data.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // If already logged in, redirect
+      const user = auth.getCurrentUser();
+      if (user) {
+        window.location.href = user.role === 'admin' ? 'admin-dashboard.html' : 'student-dashboard.html';
+        return;
+      }
+
+      // Quick Demo Fill
+      document.getElementById('demo-student-btn').addEventListener('click', () => {
+        document.getElementById('login-email').value = 'student@college.edu';
+        document.getElementById('login-password').value = 'password123';
+        showToast('Filled Student demo credentials! Click Sign In.', 'info');
+      });
+
+      document.getElementById('demo-admin-btn').addEventListener('click', () => {
+        document.getElementById('login-email').value = 'admin@college.edu';
+        document.getElementById('login-password').value = 'admin123';
+        showToast('Filled Admin demo credentials! Click Sign In.', 'info');
+      });
+
+      // Handle Login Form Submission
+      const form = document.getElementById('login-form');
+      const submitBtn = document.getElementById('login-submit-btn');
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const email = document.getElementById('login-email').value.trim();
+        const password = document.getElementById('login-password').value;
+
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Signing In...';
+
+        try {
+          const loggedInUser = await auth.login(email, password);
+          showToast(`Welcome back, ${loggedInUser.name}!`, 'success');
+
+          // Check redirect query param
+          const params = new URLSearchParams(window.location.search);
+          const redirect = params.get('redirect');
+
+          setTimeout(() => {
+            if (redirect) {
+              window.location.href = decodeURIComponent(redirect);
+            } else if (loggedInUser.role === 'admin') {
+              window.location.href = 'admin-dashboard.html';
+            } else {
+              window.location.href = 'student-dashboard.html';
+            }
+          }, 600);
+        } catch (err) {
+          showToast(err.message, 'danger');
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = 'Sign In to CampusHub';
+        }
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Event Details | CampusHub</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet" />
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/events.css" />
+</head>
+<body>
+
+  <!-- Site Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand-logo">
+        <div class="logo-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+        <span>Campus<span>Hub</span></span>
+      </a>
+
+      <nav class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="events.html" class="nav-link active">Events</a>
+        <a href="events.html?cat=Tech" class="nav-link">Hackathons</a>
+        <a href="events.html?cat=Cultural" class="nav-link">Cultural</a>
+      </nav>
+
+      <div class="nav-actions" id="nav-actions-container">
+        <!-- Injected dynamically by main.js -->
+        <a href="login.html" class="btn btn-secondary btn-sm">Log In</a>
+        <a href="register.html" class="btn btn-primary btn-sm btn-desktop-only">Sign Up</a>
+      </div>
+
+      <button type="button" class="mobile-menu-btn" id="mobile-toggle-btn" aria-label="Toggle Navigation">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-nav-drawer" id="mobile-drawer">
+    <div class="drawer-content">
+      <div class="drawer-header">
+        <div class="brand-logo">
+          <div class="logo-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+          <span>Campus<span>Hub</span></span>
+        </div>
+        <button type="button" class="modal-close" id="drawer-close-btn">&times;</button>
+      </div>
+      <div class="drawer-links">
+        <a href="index.html">Home</a>
+        <a href="events.html">Browse Events</a>
+        <a href="student-dashboard.html">Student Dashboard</a>
+        <a href="admin-dashboard.html">Admin Dashboard</a>
+        <a href="login.html">Log In</a>
+        <a href="register.html" class="btn btn-primary" style="color: white; margin-top: 1rem; text-align: center;">Sign Up</a>
+      </div>
+    </div>
+  </div>
+
+  <main class="main-content" id="event-detail-container">
+    <!-- Event Details Hero -->
+    <section class="event-details-hero">
+      <div class="container">
+        <div class="details-breadcrumb">
+          <a href="index.html">Home</a>
+          <i class="fa-solid fa-chevron-right" style="font-size: 0.7rem;"></i>
+          <a href="events.html">Events</a>
+          <i class="fa-solid fa-chevron-right" style="font-size: 0.7rem;"></i>
+          <span id="detail-breadcrumb-title">Loading Event...</span>
+        </div>
+
+        <div class="event-hero-grid">
+          <div class="event-hero-info">
+            <span class="badge" id="detail-event-badge">Category</span>
+            <h1 id="detail-event-title">Event Title</h1>
+            
+            <div class="event-hero-meta">
+              <div class="event-hero-meta-item">
+                <i class="fa-regular fa-calendar"></i>
+                <span id="detail-event-date">Oct 15, 2026</span>
+              </div>
+              <div class="event-hero-meta-item">
+                <i class="fa-regular fa-clock"></i>
+                <span id="detail-event-time">09:00 AM - 09:00 PM</span>
+              </div>
+              <div class="event-hero-meta-item">
+                <i class="fa-solid fa-location-dot"></i>
+                <span id="detail-event-venue">Main Campus Auditorium</span>
+              </div>
+            </div>
+
+            <!-- Countdown Timer -->
+            <div>
+              <div style="font-size: 0.8rem; font-weight: 600; text-transform: uppercase; color: var(--slate-300); margin-bottom: 0.5rem;">
+                Event Starts In:
+              </div>
+              <div class="countdown-box">
+                <div class="countdown-item">
+                  <div class="countdown-number" id="cd-days">00</div>
+                  <div class="countdown-label">Days</div>
+                </div>
+                <div class="countdown-item">
+                  <div class="countdown-number" id="cd-hours">00</div>
+                  <div class="countdown-label">Hours</div>
+                </div>
+                <div class="countdown-item">
+                  <div class="countdown-number" id="cd-mins">00</div>
+                  <div class="countdown-label">Mins</div>
+                </div>
+                <div class="countdown-item">
+                  <div class="countdown-number" id="cd-secs">00</div>
+                  <div class="countdown-label">Secs</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="event-hero-image-wrapper">
+            <img id="detail-hero-img" src="" alt="Event Banner" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Content & Sticky Ticket Card -->
+    <div class="container event-details-layout">
+      <!-- Left Column: Details -->
+      <div>
+        <!-- About Section -->
+        <div class="detail-section-card">
+          <h2><i class="fa-solid fa-circle-info"></i> About This Event</h2>
+          <p id="detail-full-description" style="white-space: pre-line; line-height: 1.7; font-size: 1rem; color: var(--slate-700);">
+            Loading description...
+          </p>
+        </div>
+
+        <!-- Schedule Timeline -->
+        <div class="detail-section-card">
+          <h2><i class="fa-solid fa-clock-rotate-left"></i> Event Schedule & Agenda</h2>
+          <div class="timeline" id="detail-timeline-container">
+            <!-- Loaded via events.js -->
+          </div>
+        </div>
+
+        <!-- Featured Speakers & Guests -->
+        <div class="detail-section-card">
+          <h2><i class="fa-solid fa-microphone-lines"></i> Speakers & Mentors</h2>
+          <div class="speakers-grid" id="detail-speakers-container">
+            <!-- Loaded via events.js -->
+          </div>
+        </div>
+
+        <!-- Important Guidelines -->
+        <div class="detail-section-card">
+          <h2><i class="fa-solid fa-shield-halved"></i> Guidelines & Requirements</h2>
+          <ul style="display: flex; flex-direction: column; gap: 0.75rem; color: var(--slate-700); font-size: 0.95rem;">
+            <li style="display: flex; gap: 0.65rem;"><i class="fa-solid fa-check" style="color: var(--success-600); margin-top: 4px;"></i> Valid College ID Card is required upon gate check-in.</li>
+            <li style="display: flex; gap: 0.65rem;"><i class="fa-solid fa-check" style="color: var(--success-600); margin-top: 4px;"></i> Bring your digital QR pass from the CampusHub dashboard.</li>
+            <li style="display: flex; gap: 0.65rem;"><i class="fa-solid fa-check" style="color: var(--success-600); margin-top: 4px;"></i> Certificates of participation will be issued digitally after the event.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Right Column: Sticky Ticket Registration Card -->
+      <div>
+        <div class="sticky-ticket-card">
+          <div class="ticket-price-box">
+            <div>
+              <div style="font-size: 0.8rem; color: var(--slate-500); text-transform: uppercase; font-weight: 600;">Registration Fee</div>
+              <div class="ticket-price-val" id="detail-ticket-price">$0.00</div>
+            </div>
+            <span class="badge badge-success">Official Pass</span>
+          </div>
+
+          <div class="ticket-info-list">
+            <div class="ticket-info-item">
+              <span><i class="fa-solid fa-users" style="margin-right: 6px; color: var(--primary-600);"></i> Available Spots</span>
+              <span id="detail-seats-left">Loading...</span>
+            </div>
+            <div class="ticket-info-item">
+              <span><i class="fa-solid fa-ticket" style="margin-right: 6px; color: var(--primary-600);"></i> Total Capacity</span>
+              <span id="detail-total-capacity">Loading...</span>
+            </div>
+            <div class="ticket-info-item">
+              <span><i class="fa-solid fa-certificate" style="margin-right: 6px; color: var(--primary-600);"></i> Certificate</span>
+              <span>Provided</span>
+            </div>
+          </div>
+
+          <div id="detail-register-btn-container">
+            <!-- Injected by events.js based on auth & registration state -->
+            <button type="button" class="btn btn-primary btn-block btn-lg" onclick="handleRegisterSubmit()">
+              Register Now
+            </button>
+          </div>
+
+          <div class="organizer-card">
+            <div class="organizer-icon">
+              <i class="fa-solid fa-building-columns"></i>
+            </div>
+            <div>
+              <div style="font-size: 0.75rem; color: var(--slate-500); text-transform: uppercase; font-weight: 600;">Organized By</div>
+              <div style="font-weight: 700; font-size: 0.9rem; color: var(--slate-900);" id="detail-event-organizer">Event Committee</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Digital QR Pass Modal -->
+  <div class="modal-backdrop" id="ticket-pass-modal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-ticket" style="color: var(--primary-600);"></i> Official Entry Pass</h3>
+        <button type="button" class="modal-close" data-modal-close>&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="pass-ticket-modal-content">
+          <h4 id="pass-event-title" style="font-size: 1.25rem; color: var(--slate-900); margin-bottom: 0.25rem;">Event Title</h4>
+          <p id="pass-student-name" style="font-weight: 600; color: var(--primary-600); font-size: 0.95rem;">Student Name</p>
+
+          <div class="qr-code-box">
+            <!-- Clean SVG QR Code Representation -->
+            <svg class="qr-svg" viewBox="0 0 100 100" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path d="M0 0h35v35H0V0zm5 5v25h25V5H5zm5 5h15v15H10V10zM65 0h35v35H65V0zm5 5v25h25V5H70zm5 5h15v15H75V10zM0 65h35v35H0V65zm5 5v25h25V70H5zm5 5h15v15H10V75zM45 10h10v10H45V10zm0 25h10v10H45V35zm0 25h10v10H45V60zm0 25h10v15H45V85zm20-20h10v10H65V65zm20 0h15v10H85V65zm-20 20h10v15H65V85zm20 0h15v15H85V85z" fill="#1E293B"/>
+            </svg>
+            <span style="font-size: 0.75rem; color: var(--slate-500); margin-top: 0.5rem; font-weight: 600;">SCAN FOR ENTRY</span>
+          </div>
+
+          <div style="background: var(--slate-50); padding: 1rem; border-radius: var(--radius-md); border: 1px solid var(--slate-200); text-align: left; font-size: 0.85rem;">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 0.4rem;">
+              <span style="color: var(--slate-500);">Ticket ID:</span>
+              <strong id="pass-ticket-code">CH-0000</strong>
+            </div>
+            <div style="display: flex; justify-content: space-between; margin-bottom: 0.4rem;">
+              <span style="color: var(--slate-500);">Date:</span>
+              <strong id="pass-date-time">Oct 15, 2026</strong>
+            </div>
+            <div style="display: flex; justify-content: space-between; margin-bottom: 0.4rem;">
+              <span style="color: var(--slate-500);">Venue:</span>
+              <strong id="pass-venue">Campus Hall</strong>
+            </div>
+            <div style="display: flex; justify-content: space-between;">
+              <span style="color: var(--slate-500);">Status:</span>
+              <span class="badge badge-success" id="pass-status-badge">Confirmed</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-sm" onclick="window.print()">
+          <i class="fa-solid fa-print"></i> Print Pass
+        </button>
+        <button type="button" class="btn btn-primary btn-sm" data-modal-close>Done</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="brand-logo">
+            <div class="logo-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+            <span>Campus<span>Hub</span></span>
+          </div>
+          <p>The modern, responsive campus event platform designed for students, faculty coordinators, and club organizers.</p>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-heading">Quick Links</h4>
+          <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="events.html">Browse Events</a>
+            <a href="student-dashboard.html">Student Portal</a>
+            <a href="admin-dashboard.html">Admin Center</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-heading">Categories</h4>
+          <div class="footer-links">
+            <a href="events.html?cat=Tech">Hackathons & AI</a>
+            <a href="events.html?cat=Cultural">Cultural Festivals</a>
+            <a href="events.html?cat=Sports">Sports Tournaments</a>
+            <a href="events.html?cat=Workshop">Hands-on Workshops</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-heading">Campus Desk</h4>
+          <p style="margin-bottom: 0.75rem;"><i class="fa-solid fa-envelope"></i> events@college.edu</p>
+          <p><i class="fa-solid fa-phone"></i> +1 (555) 019-2834</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>&copy; 2026 CampusHub Event Management System. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/mock-data.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/events.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      loadEventDetails();
+    });
+  </script>
+</body>
+</html>

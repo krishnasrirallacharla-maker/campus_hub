@@ -1,0 +1,180 @@
+/* ==========================================================================
+   AUTHENTICATION PAGES STYLESHEET (Login & Register)
+   ========================================================================== */
+
+.auth-wrapper {
+  min-height: calc(100vh - var(--header-height));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1.5rem;
+  background: radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.08) 0%, rgba(147, 51, 234, 0.08) 90.2%), var(--bg-body);
+  position: relative;
+  overflow: hidden;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 480px;
+  background: var(--bg-surface);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-xl);
+  border: 1px solid var(--border-color);
+  padding: 2.5rem 2rem;
+  position: relative;
+  z-index: 2;
+}
+
+.auth-card-lg {
+  max-width: 580px;
+}
+
+.auth-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.auth-header .auth-icon {
+  width: 54px;
+  height: 54px;
+  border-radius: var(--radius-lg);
+  background: var(--gradient-primary);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  margin: 0 auto 1rem;
+  box-shadow: var(--shadow-glow);
+}
+
+.auth-header h1 {
+  font-size: 1.65rem;
+  margin-bottom: 0.35rem;
+}
+
+.auth-header p {
+  font-size: 0.925rem;
+  color: var(--slate-500);
+}
+
+/* Demo Credentials Box */
+.demo-accounts-box {
+  background-color: var(--primary-50);
+  border: 1px solid var(--primary-200);
+  border-radius: var(--radius-lg);
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.demo-title {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--primary-800);
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.demo-buttons-group {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.demo-btn {
+  flex: 1;
+  padding: 0.45rem 0.65rem;
+  background-color: white;
+  border: 1px solid var(--primary-200);
+  border-radius: var(--radius-md);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--primary-700);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  text-align: center;
+}
+
+.demo-btn:hover {
+  background-color: var(--primary-600);
+  color: white;
+  border-color: var(--primary-600);
+}
+
+.auth-divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin-block: 1.5rem;
+  color: var(--slate-400);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.auth-divider::before, .auth-divider::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid var(--slate-200);
+}
+
+.auth-divider span {
+  padding-inline: 0.75rem;
+}
+
+.auth-footer {
+  text-align: center;
+  margin-top: 1.75rem;
+  font-size: 0.9rem;
+  color: var(--slate-600);
+}
+
+.auth-footer a {
+  font-weight: 600;
+}
+
+/* Radio Card Selector (Student / Admin Role selection) */
+.role-selector-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.role-radio-card {
+  position: relative;
+  cursor: pointer;
+}
+
+.role-radio-card input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.role-box {
+  border: 2px solid var(--slate-200);
+  border-radius: var(--radius-md);
+  padding: 0.85rem;
+  text-align: center;
+  transition: all var(--transition-fast);
+}
+
+.role-radio-card input:checked + .role-box {
+  border-color: var(--primary-600);
+  background-color: var(--primary-50);
+  color: var(--primary-700);
+}
+
+.role-box i {
+  font-size: 1.25rem;
+  margin-bottom: 0.25rem;
+  display: block;
+}
+
+.role-box span {
+  font-weight: 600;
+  font-size: 0.85rem;
+}

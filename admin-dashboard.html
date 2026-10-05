@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard | CampusHub</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet" />
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/dashboard.css" />
+</head>
+<body>
+
+  <!-- Site Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand-logo">
+        <div class="logo-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+        <span>Campus<span>Hub</span></span>
+      </a>
+
+      <nav class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="events.html" class="nav-link">Events Catalog</a>
+        <a href="admin-dashboard.html" class="nav-link active">Admin Portal</a>
+      </nav>
+
+      <div class="nav-actions" id="nav-actions-container">
+        <!-- Injected dynamically by main.js -->
+      </div>
+    </div>
+  </header>
+
+  <!-- Dashboard Layout -->
+  <div class="dashboard-layout">
+    <!-- Sidebar -->
+    <aside class="dashboard-sidebar">
+      <div class="sidebar-user-card">
+        <div class="sidebar-user-avatar" id="sidebar-avatar-initials">A</div>
+        <div class="sidebar-user-details">
+          <div class="sidebar-user-name" id="sidebar-user-name">Dr. Sarah Jenkins</div>
+          <div class="sidebar-user-role">Admin / Faculty</div>
+        </div>
+      </div>
+
+      <ul class="sidebar-nav-list">
+        <li>
+          <a href="admin-dashboard.html" class="sidebar-nav-item active">
+            <i class="fa-solid fa-chart-pie"></i> Overview & Stats
+          </a>
+        </li>
+        <li>
+          <a href="admin-events.html" class="sidebar-nav-item">
+            <i class="fa-solid fa-calendar-plus"></i> Manage Events (CRUD)
+          </a>
+        </li>
+        <li>
+          <a href="admin-registrations.html" class="sidebar-nav-item">
+            <i class="fa-solid fa-users"></i> Registrations & Passes
+          </a>
+        </li>
+        <li>
+          <a href="events.html" class="sidebar-nav-item">
+            <i class="fa-solid fa-compass"></i> Public Event Catalog
+          </a>
+        </li>
+        <li>
+          <a href="profile.html" class="sidebar-nav-item">
+            <i class="fa-solid fa-user-gear"></i> Admin Profile
+          </a>
+        </li>
+      </ul>
+
+      <div class="sidebar-footer">
+        <button type="button" class="sidebar-nav-item" onclick="auth.logout()" style="width: 100%; color: var(--danger-500);">
+          <i class="fa-solid fa-arrow-right-from-bracket" style="color: var(--danger-500);"></i> Sign Out
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="dashboard-main">
+      <div class="dashboard-topbar">
+        <div class="dashboard-title-box">
+          <h1>Admin Command Center</h1>
+          <p>Real-time analytics, event capacity status, and student registration feeds.</p>
+        </div>
+        <div class="dashboard-actions">
+          <a href="admin-events.html" class="btn btn-primary btn-sm">
+            <i class="fa-solid fa-plus"></i> Create New Event
+          </a>
+          <a href="admin-registrations.html" class="btn btn-secondary btn-sm">
+            <i class="fa-solid fa-file-export"></i> Manage Registrations
+          </a>
+        </div>
+      </div>
+
+      <!-- Overview Stats Grid -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-info">
+            <span class="stat-label">Total Events</span>
+            <span class="stat-value" id="stat-total-events">0</span>
+            <span class="stat-trend positive"><i class="fa-solid fa-arrow-trend-up"></i> Active on Campus</span>
+          </div>
+          <div class="stat-icon-wrapper stat-icon-indigo">
+            <i class="fa-solid fa-calendar-days"></i>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-info">
+            <span class="stat-label">Total Registrations</span>
+            <span class="stat-value" id="stat-total-registrations">0</span>
+            <span class="stat-trend positive"><i class="fa-solid fa-circle-check"></i> Confirmed Bookings</span>
+          </div>
+          <div class="stat-icon-wrapper stat-icon-purple">
+            <i class="fa-solid fa-ticket"></i>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-info">
+            <span class="stat-label">Active Students</span>
+            <span class="stat-value" id="stat-total-students">0</span>
+            <span class="stat-trend neutral"><i class="fa-solid fa-user-group"></i> Campus Community</span>
+          </div>
+          <div class="stat-icon-wrapper stat-icon-green">
+            <i class="fa-solid fa-graduation-cap"></i>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-info">
+            <span class="stat-label">Capacity Fill Rate</span>
+            <span class="stat-value" id="stat-fill-rate">0%</span>
+            <span class="stat-trend positive"><i class="fa-solid fa-bolt"></i> Seat Utilization</span>
+          </div>
+          <div class="stat-icon-wrapper stat-icon-amber">
+            <i class="fa-solid fa-chart-pie"></i>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Action Cards Grid -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
+        <div class="card" style="padding: 1.5rem; background: var(--gradient-subtle); border-color: var(--primary-200);">
+          <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+            <div style="width: 42px; height: 42px; border-radius: var(--radius-md); background: var(--primary-600); color: white; display: flex; align-items: center; justify-content: center;">
+              <i class="fa-solid fa-calendar-plus"></i>
+            </div>
+            <div>
+              <h4 style="font-size: 1.05rem; margin: 0;">Event Management</h4>
+              <p style="font-size: 0.8rem; margin: 0; color: var(--slate-500);">Create, edit, or remove events</p>
+            </div>
+          </div>
+          <a href="admin-events.html" class="btn btn-primary btn-sm btn-block">Launch Event Manager</a>
+        </div>
+
+        <div class="card" style="padding: 1.5rem; background: var(--gradient-subtle); border-color: var(--accent-400);">
+          <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+            <div style="width: 42px; height: 42px; border-radius: var(--radius-md); background: var(--accent-600); color: white; display: flex; align-items: center; justify-content: center;">
+              <i class="fa-solid fa-file-csv"></i>
+            </div>
+            <div>
+              <h4 style="font-size: 1.05rem; margin: 0;">Attendee Export</h4>
+              <p style="font-size: 0.8rem; margin: 0; color: var(--slate-500);">Export attendees to CSV</p>
+            </div>
+          </div>
+          <a href="admin-registrations.html" class="btn btn-secondary btn-sm btn-block">View Attendee Lists</a>
+        </div>
+      </div>
+
+      <!-- Recent Registrations Feed Panel -->
+      <div class="dashboard-panel">
+        <div class="panel-header">
+          <h3><i class="fa-solid fa-clock-rotate-left" style="color: var(--primary-600); margin-right: 6px;"></i> Recent Student Registrations</h3>
+          <a href="admin-registrations.html" class="btn btn-outline btn-sm">View All Registrations</a>
+        </div>
+
+        <div class="panel-body" style="padding: 0;">
+          <div class="table-responsive">
+            <table class="custom-table">
+              <thead>
+                <tr>
+                  <th>Student</th>
+                  <th>Event Title</th>
+                  <th>Ticket Pass</th>
+                  <th>Registration Date</th>
+                  <th>Attendance</th>
+                </tr>
+              </thead>
+              <tbody id="admin-recent-regs-tbody">
+                <!-- Injected via admin.js -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/mock-data.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/admin.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      initAdminDashboard();
+      const user = auth.getCurrentUser();
+      if (user) {
+        document.getElementById('sidebar-avatar-initials').textContent = user.name.charAt(0).toUpperCase();
+        document.getElementById('sidebar-user-name').textContent = user.name;
+      }
+    });
+  </script>
+</body>
+</html>
